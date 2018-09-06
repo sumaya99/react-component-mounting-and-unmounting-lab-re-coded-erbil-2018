@@ -37,7 +37,7 @@ class Pancake extends React.Component {
     this.setState({
       flippedAt: this.state.timeCooked
     })
-  }
+
 
   getPancakeStatus = () => {
     const { timeCooked, flippedAt } = this.state;
@@ -50,9 +50,12 @@ class Pancake extends React.Component {
     }
 
     //second side
-    if (flippedAt > 2) return 'burnt';
-    if (timeCooked === 4 && flippedAt === 2) return 'cooked';
-    return 'raw';
+    if (timeCooked > 4) return 'burnt'
+    if (timeCooked === 4) return 'cooked'
+    if (timeCooked < 4) return 'raw'
+    return 'burnt'
+
+
   }
 
   takeItOff = () => {
@@ -75,9 +78,9 @@ class Pancake extends React.Component {
             Time cooked on {`${firstSide ? 'first' : 'second'}`} side: {`${firstSide ? timeCooked : timeCooked - flippedAt}`}
           </p>
           <div>
-            { firstSide ? 
-              <button onClick={this.flip}>Flip me!</button> 
-              : 
+            { firstSide ?
+              <button onClick={this.flip}>Flip me!</button>
+              :
               <button onClick={this.takeItOff}>Take me off!</button>
             }
           </div>
